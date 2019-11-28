@@ -47,6 +47,10 @@ class sls:
             raw = csv.reader(csvfile, delimiter = ' ')
             data = np.array([[float(row[0]), float(row[1])] for row in raw])
             
+            data=np.asarray(sorted(data, key=lambda x:x[0]))
+            print(sorted(data, key=lambda x:x[0]))
+            
+            
         xCordenade = data[:,0]
         yCordenade  = data[:,1]
         variance = np.std(yCordenade)**2   #variance of "y" for caculate penalty
@@ -170,5 +174,5 @@ class sls:
         yfit = self.getFit(xplt)
         plt.plot(self.x, self.y, '.')
         #plt.plot([abs(self.xVal), 0], [0, self.b], color='red', marker = '.')
-        plt.plot(xplt, yfit)
+        plt.plot(xplt, yfit, color='green')
         plt.show()
